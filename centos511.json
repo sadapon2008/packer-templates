@@ -1,0 +1,82 @@
+{
+  "builders": [
+    {
+      "type": "virtualbox-iso",
+      "boot_command": [
+        "<tab> text ks=http://{{ .HTTPIP }}:{{ .HTTPPort }}/ks_centos5.cfg<enter><wait>"
+      ],
+      "boot_wait": "10s",
+      "disk_size": "20480",
+      "guest_os_type": "RedHat_64",
+      "headless": true,
+      "http_directory": "http",
+      "iso_urls": [
+        "iso/CentOS-5.11-x86_64-netinstall.iso",
+        "http://ftp.riken.jp/Linux/centos/5.11/isos/x86_64/CentOS-5.11-x86_64-netinstall.iso"
+      ],
+      "iso_checksum": "91db10bb9808818f6fbf20196fbab4c0c9da19d3",
+      "iso_checksum_type": "sha1",
+      "ssh_username": "vagrant",
+      "ssh_password": "vagrant",
+      "ssh_port": 22,
+      "ssh_wait_timeout": "10000s",
+      "shutdown_command": "echo 'vagrant'|sudo -S /sbin/shutdown -h now",
+      "vm_name": "centos511",
+      "hard_drive_interface": "sata",
+      "vboxmanage": [
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--cpus",
+          "1"
+        ],
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--memory",
+          "512"
+        ],
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--usb",
+          "off"
+        ],
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--audio",
+          "none"
+        ],
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--nictype1",
+          "virtio"
+        ],
+        [
+          "modifyvm",
+          "{{.Name}}",
+          "--vrde",
+          "off"
+        ]
+      ]
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell",
+      "execute_command": "echo 'vagrant' | {{.Vars}} sudo -S -E bash '{{.Path}}'",
+      "scripts": [
+        "scripts/centos5_setup1.sh",
+        "scripts/centos5_setup2.sh"
+      ]
+    }
+  ],
+  "post-processors": [
+    {
+      "type": "vagrant",
+      "output": "centos511.box"
+    }
+  ]
+}
