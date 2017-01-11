@@ -8,6 +8,7 @@ rm -f /home/vagrant/VBoxGuestAdditions.iso
 rm -f /home/vagrant/.vbox_version
 
 rm -f /etc/machine-id
+touch /etc/machine-id
 
 yum -y clean all
 

@@ -8,6 +8,7 @@ rm -f /home/vagrant/VBoxGuestAdditions.iso
 rm -f /home/vagrant/.vbox_version
 
 rm -f /etc/machine-id
+touch /etc/machine-id
 
 rm -f /etc/udev/rules.d/70-persistent-net.rules
 ln -s -f /dev/null /etc/udev/rules.d/70-persistent-net.rules
