@@ -12,7 +12,7 @@
       "http_directory": "http",
       "iso_urls": [
         "iso/CentOS-5.11-x86_64-netinstall.iso",
-        "http://ftp.riken.jp/Linux/centos/5.11/isos/x86_64/CentOS-5.11-x86_64-netinstall.iso"
+        "http://archive.kernel.org/centos-vault/5.11/isos/x86_64/CentOS-5.11-x86_64-netinstall.iso"
       ],
       "iso_checksum": "91db10bb9808818f6fbf20196fbab4c0c9da19d3",
       "iso_checksum_type": "sha1",
